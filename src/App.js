@@ -1,5 +1,5 @@
 
-import './App.css';
+
 import Navbar from './Navbar';
 import Home from './Home';
 const title = 'Welcome to the new blog';
