@@ -3,7 +3,7 @@ import './App.css';
 
 const title = 'Welcome to the new blog';
 const likes ='50';
-
+const link ="http://www.google.com";
 function App() {
   return (
     <div className="App">
@@ -15,6 +15,7 @@ function App() {
         <p>{"hello, ninjas"}</p>
         <p>{[1,2,3,4,5]}</p>
         <p>{Math.random()*10}</p>
+        <a href={link}>Google Site</a>
 
       </div>
     </div>
