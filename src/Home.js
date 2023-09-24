@@ -10,6 +10,7 @@ const Home = () => {
 
   const [name, setName] = useState('mario');
 
+  const [error,setError] = useState(null);
  
   const[isPending,setIsPending]= useState(true);
 
@@ -24,8 +25,10 @@ const Home = () => {
    }).then(data=>{
     setBlogs(data);
     setIsPending(false);
+    setError(null);
    }).catch(err =>{
-    console.log(err);
+    setError(err.message);
+    setIsPending(false);
    })
   
   
@@ -35,6 +38,7 @@ const Home = () => {
   
   return (
     <div className="home">
+      {error && <div>{error}</div>}
       {isPending && <div> Loading.. </div>}
       {blogs && <BlogList blogs={blogs} title="All Blogs" />}
       <button onClick={() => setName('luigi')}>change name</button>
