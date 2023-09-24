@@ -6,26 +6,28 @@ const Home = () => {
 
     
 
-  const [blogs, setBlogs] = useState([
-    { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
-    { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
-    { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
-  ])
+  const [blogs, setBlogs] = useState(null)
 
   const [name, setName] = useState('mario');
 
-  const handleDelete = (id) => {
-    const newBlogs = blogs.filter(blog => blog.id !== id);
-    setBlogs(newBlogs);
-  }
+ 
+  const[isPending,setIsPending]= useState(true);
 
   useEffect(() => {
-    console.log('use  ran');
-  },[name]) ;
+  setTimeout(()=>{
+   fetch("http://localhost:8000/blogs").then(res=>
+   {
+    return res.json();
+   }).then(data=>{
+    setBlogs(data);
+    setIsPending(false);
+   })},1000);
+  },[]) ;
   
   return (
     <div className="home">
-      <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete} />
+      {isPending && <div> Loading.. </div>}
+      {blogs && <BlogList blogs={blogs} title="All Blogs" />}
       <button onClick={() => setName('luigi')}>change name</button>
       <p>{name}</p>
     </div>
