@@ -17,11 +17,20 @@ const Home = () => {
   setTimeout(()=>{
    fetch("http://localhost:8000/blogs").then(res=>
    {
+    if(!res.ok){
+      throw Error("could not fetch the data from the server");
+    }
     return res.json();
    }).then(data=>{
     setBlogs(data);
     setIsPending(false);
-   })},1000);
+   }).catch(err =>{
+    console.log(err);
+   })
+  
+  
+  
+  },1000);
   },[]) ;
   
   return (
