@@ -1,20 +1,27 @@
 
 
 import Navbar from './Navbar';
+
 import Home from './Home';
-const title = 'Welcome to the new blog';
-const likes ='50';
-const link ="http://www.google.com";
+
+import{BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+
+
 function App() {
   return (
+    <Router>
     <div className="App">
       <Navbar/>
       <div className="content">
+        <Routes>
+          <Route path="/"  element ={<Home/>}/>
         
-       <Home />
+        </Routes>
+  
 
       </div>
     </div>
+    </Router>
   );
 }
 
