@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useHistory} from'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const Create = () => {
 
@@ -10,6 +10,8 @@ const Create = () => {
     const[author,setAuthor] =useState('mario');
 
     const[isPending,setIsPending] =useState(false);
+
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,6 +24,7 @@ const Create = () => {
           
         }).then(() => {
             setIsPending(false);
+            navigate('/');
         })
       }
 
